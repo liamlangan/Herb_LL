@@ -107,14 +107,45 @@ plot(mass, home_range_per_individual(mass), xlab="Female adult Mass (kg)", ylab=
 
 ##------------------------------------------------------------------------------------------------
 ##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
 # Chapter 9. deals with body-size and sociobiology. Noteworthy is that there is often a reduced probability of predation with increasing group size (higher fitness) 
 # while there is reduced foraging efficiency with increasing group size (reduced fitness). This implies a there is a maximum fitness point in relation to group size, 
 # foraging efficency and predation. These maximum fitness points will depend on mass, certainly predation will depend on mass of a prey individauls w.r.t. the mass of the predator.
 # Fig. 9.1, Fig 9.2
 
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Chapter 10. Body-size and reproductive patterns.
+# NOTE: Find gestation time, I saw it somewhere previously in the text.
 
+# Age at first conception (y) in relation to body mass (kg). I want to use this to determine the size an individual needs to reach before it can reproduce. 
+# all options - (using option 1)
+# 1 - (all species) x <- function(mass){0.41*(mass^0.32)}
+# 2 - (mega herbivores excluded) x <- function(mass){0.54*(mass^0.25)} 
 
+age_to_first_baby <- function(mass) {0.41*(mass^0.32)} # Fig. 10.1 Normal Owen Smith
+plot(mass, age_to_first_baby(mass), xlab="Body mass (kg)", ylab="Age at first conception (y)" ) # this looks correct
 
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Birth interval (month) in relation to body mass (kg)
+# all options - (using option 1)
+# 1 - (all species) x <- function(mass){3.40*(mass^0.27)}
+# 2 - (mega herbivores excluded) x <- function(mass){5.00*(mass^0.17)} 
+birth_interval <- function(mass) {3.40*(mass^0.27)} # Fig. 10.2 Normal Owen Smith
+plot(mass, birth_interval(mass)/12, xlab="Body mass (kg)", ylab="Birth interval (y)" ) # this looks correct
+
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Gestation time (y) in relation to body mass (female body mass).
+# all options - (using option 1)
+# 1 - (all species) x <- function(mass){3.15*(mass^0.20)}
+# 2 - (mega herbivores excluded) x <- function(mass){3.49*(mass^0.17)} 
+gestation_time <- function(mass) {3.15*(mass^0.20)} # Fig. 10.2 Normal Owen Smith
+plot(mass, gestation_time(mass)/12, xlab="Body mass (kg)", ylab="Gestation time (y)" ) # this looks correct
 
 
 
