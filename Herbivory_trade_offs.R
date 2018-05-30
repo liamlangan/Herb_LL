@@ -118,8 +118,7 @@ plot(mass, home_range_per_individual(mass), xlab="Female adult Mass (kg)", ylab=
 ##------------------------------------------------------------------------------------------------
 ##------------------------------------------------------------------------------------------------
 ##------------------------------------------------------------------------------------------------
-# Chapter 10. Body-size and reproductive patterns.
-# NOTE: Find gestation time, I saw it somewhere previously in the text.
+# Chapter 10. Body-size and reproductive patterns. This chapter is crucial.
 
 # Age at first conception (y) in relation to body mass (kg). I want to use this to determine the size an individual needs to reach before it can reproduce. 
 # all options - (using option 1)
@@ -144,8 +143,89 @@ plot(mass, birth_interval(mass)/12, xlab="Body mass (kg)", ylab="Birth interval 
 # all options - (using option 1)
 # 1 - (all species) x <- function(mass){3.15*(mass^0.20)}
 # 2 - (mega herbivores excluded) x <- function(mass){3.49*(mass^0.17)} 
-gestation_time <- function(mass) {3.15*(mass^0.20)} # Fig. 10.2 Normal Owen Smith
+gestation_time <- function(mass) {3.15*(mass^0.20)} # Fig. 10.3 Normal Owen Smith
 plot(mass, gestation_time(mass)/12, xlab="Body mass (kg)", ylab="Gestation time (y)" ) # this looks correct
+
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Neonatal mass (kg) in relation to maternal mass (female body mass).
+# all options - (using option 1)
+# 1 - (all species) x <- function(mass){0.23*(mass^0.79)}
+# 2 - (mega herbivores excluded) x <- function(mass){0.17*(mass^0.87)} 
+neonatal_mass <- function(mass) {0.23*(mass^0.79)} # Fig. 10.4 Normal Owen Smith
+plot(mass, neonatal_mass(mass), xlab="Maternal body mass (kg)", ylab="neonatal_mass (kg)" ) # this looks correct
+
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Sex ratio, Fig. 10.5. I'm happy to assume even sex ratio. 
+
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Chapter 11. Demography ### should emerge based on trade-offs 
+
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Chapter 12. Community interactions 
+# need equation which defines the probability an individual will kill/top-kill a tree based on body mass 
+
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Chapter 13. Body size and population regulation
+# see appendix 2 for Owen Smiths model using scaling parameters
+# "The only adjustment that can prevent or reduce episodic overexploitation of food resources during droughts is dispersal.". Seems to be apparent in Pachzelt model.
+
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Chapter 14. Body size and ecosystem processes
+# see chapter 5 for basal metabolic rates, here it seems to be 
+metabolic_cost <- function(mass) {mass^0.25} 
+plot(mass, metabolic_cost(mass), xlab="Mass (kg)", ylab="Cost (?)" ) # this looks correct
+
+# there are equations which related total population biomass to individual body mass (Fig. 14.1, Fig. 14.2). 
+# it would be however nice if the model we design could reproduce this. 
+# Fig. 14.3 gives herbivore biomass against rainfall - useful for benchmarking
+
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Chapter 15. Late pleistocence extinctions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
