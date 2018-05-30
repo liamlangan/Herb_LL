@@ -2,6 +2,7 @@
 # Herbivory trade-offs
 
 ## Relationships taken from From - Normal Owen Smith (The influence of very large body size on ecology) unless otherwise stated.
+mass <- seq(1, 5000, by=1)
 
 ##------------------------------------------------------------------------------------------------
 ##------------------------------------------------------------------------------------------------
@@ -33,13 +34,35 @@
 ##------------------------------------------------------------------------------------------------
 ## Chapter 5 (Body size and nutritional physiology) 
 
+# There was a function for life expectancy as a function of mass. I must find it.   
+
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+
+# metabolic requirement as a function of mass (Owen Smith then goes on to use the value 0.73)
+# NOTE: the constant appears to be missing
+metabolic_requitement <- function(mass) {mass^0.75} # refers strictly to maintainance requirements
+plot(mass, metabolic_requitement(mass), ylab="Metabolic requirement (is this relatvie or what are the units??)", xlab="Body mass (kg)")
+
+dik_dik_to_elephant <- metabolic_requitement(5000)/metabolic_requitement(5) # this matches value in book
+# just need a basal metabilic requitement per kg
+
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# gut content mass as function of herbivore mass
+# NOTE: the constant appears to be missing, i.e. the constant should be <1 so that the mass the gut can store is less than the animals mass 
+gut_mass_max <- function(mass){mass^1.08}
+plot(mass, gut_mass_max(mass), ylab="Gut mass max (kg)", xlab="Body mass (kg)")
+
+
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
 # daily food intake (organic matter) as percentage of body mass (function used = #2 below) 
 # all options
 # 1 - (grass hay, all species except pigmy hippo and giraffe) x <- function(mass){4.04*(mass^-0.184)}
 # 2 - (grass hay, hindgut fermenters only) x <- function(mass){6.95*(mass^-0.236)} 
 # 3 - (legume hay, all species except pigmy hippo and giraffe) x <- function(mass){7.31*(mass^-0.231)} 
 # 4 - (legume hay, hindgut fermenters only) x <- function(mass){13.8*(mass^-0.315)} 
-mass <- seq(1, 5000, by=1)
 daily_food_intake <- function(mass){0.695*(mass^-0.236)} # Fig. 5.1 Normal Owen Smith
 plot(mass, daily_food_intake(mass), ylab="Daily food intake (% of body mass)", xlab="Body mass (kg)", ylim=c(0,1))
 
