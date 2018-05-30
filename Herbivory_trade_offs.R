@@ -24,6 +24,7 @@ plot(mass, mass*daily_food_intake1(mass), ylab="Daily food intake (kg)", xlab="B
 lines(mass, mass*daily_food_intake1(mass), col="red", lwd=3)
 
 ##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
 # daily food intake (dry mass) as percentage of body mass (Fig. 5.2 Normal Owen Smith) 
 daily_food_intake2 <- function(mass){0.6*(mass^-0.191)} # Fig. 5.2 Normal Owen Smith
 plot(mass, daily_food_intake2(mass), ylab="Daily food intake (% of body mass)", xlab="Body mass (kg)", ylim=c(0,1))
@@ -33,6 +34,7 @@ lines(mass, daily_food_intake2(mass), col="red", lwd=3)
 plot(mass, mass*daily_food_intake2(mass), ylab="Daily food intake (kg)", xlab="Body mass (kg)", ylim=c(0,1000))
 lines(mass, mass*daily_food_intake2(mass), col="red", lwd=3)
 
+##------------------------------------------------------------------------------------------------
 ##------------------------------------------------------------------------------------------------
 # Mean retention time (h) of digesta in relation to body mass (Fig. 5.3 Normal Owen Smith), original ref. (Foose, 1982) (function used = #2 below) 
 # all options
@@ -60,27 +62,55 @@ plot(mass, cell_wall_digestion_percent(log_e_residual_digestable_cell_wall(mean_
 ##------------------------------------------------------------------------------------------------
 
 ## Chapter 6 (Body size and nutritional physiology) 
-percent_crude_protein_stomach <- function(mass) {21.6*(mass^-0.23)} # Fig. 6.1 Normal Owen Smith
+
+# "Crude protein concentrations in the stomach contents of large herbivores during the dry season in relation to body size" (Owen Smith)
+percent_crude_protein_stomach <- function(mass) {21.6*(mass^-0.23)} # Fig. 6.1 Normal Owen Smith (ruminants only excluding giraffe)
 plot(mass, percent_crude_protein_stomach(mass), ylab="Daily food intake (% of body mass)", xlab="Body mass (kg)", ylim=c(0,20))
 
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Fermentation rate (umol gas g (dry matter)^-1 h^-1) in expressed as gas production in relation to body mass. 
+fermentation_rate <- function(mass) {945*(mass^-0.22)} # Fig. 6.2 Normal Owen Smith
+plot(mass, fermentation_rate(mass), xlab="Mass (kg)", ylab="Fermentation rate (umol gas g (dry matter)^-1 h^-1)" ) # this looks correct
 
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Proportion (%) of non-stem material (leaves, leaf sheaths, fruits) in rumen or stomach content of large herbivores in relation to body mass
+# for elephants it's based on replicated food intake and hippo from fecal samples
+non_stem_in_digesta <- function(mass) {pmin(100, (116*(mass^-0.118)))} # pmin as eq. extends above 100% # Fig. 6.3 Normal Owen Smith
+plot(mass, non_stem_in_digesta(mass), xlab="Mass (kg)", ylab="(%) of non-stem material" ) # this looks correct
 
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Daily foraging time (% of day) of large herbivores in relation to body mass. (function used = #1 below)
+# all options
+# 1 - (all species) x <- function(mass){24.20*(mass^0.12)}
+# 2 - (ruminants only) x <- function(mass){27.90*(mass^0.08)} 
+# 3 - (non-ruminants only) x <- function(mass){19.00*(mass^0.17)}
 
+percent_foraging_time <- function(mass) {24.20*(mass^0.12)} # Fig. 6.4 Normal Owen Smith
+plot(mass, percent_foraging_time(mass), xlab="Mass (kg)", ylab="(% of day) Foraging time" ) # this looks correct
 
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Female home range area (km^2)(plot gives km2, eqn. gives ha) as a function of adult female body mass. Likely not needed but for completeness.
+home_range <- function(mass) {1.35*(mass^1.25)} # Fig. 6.6 Normal Owen Smith
+plot(mass, home_range(mass)/100, xlab="Female adult Mass (kg)", ylab="Home range area (km^2)" ) # this looks correct
 
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Home range extent per individual (km^2)(plot gives km2, eqn. gives ha) as a function of adult body mass. Likely not needed but for completeness.
+# excludes mega herbivores. Calculated by dividing home range extent by size of social group. Social group size requires imformation about the
+# behavioural ecology of species and as such is not useable/useful for what we need to do.  
+home_range_per_individual <- function(mass) {1.07*(mass^0.83)} # Fig. 6.7 Normal Owen Smith
+plot(mass, home_range_per_individual(mass), xlab="Female adult Mass (kg)", ylab="Home range extent per individual (ha)" , xlim=c(0,600), ylim=c(0,300)) # this looks correct
 
-
-
-
-
-
-
-
-
-
-
-
-
+##------------------------------------------------------------------------------------------------
+##------------------------------------------------------------------------------------------------
+# Chapter 9. deals with body-size and sociobiology. Noteworthy is that there is often a reduced probability of predation with increasing group size (higher fitness) 
+# while there is reduced foraging efficiency with increasing group size (reduced fitness). This implies a there is a maximum fitness point in relation to group size, 
+# foraging efficency and predation. These maximum fitness points will depend on mass, certainly predation will depend on mass of a prey individauls w.r.t. the mass of the predator.
+# Fig. 9.1, Fig 9.2
 
 
 
